@@ -1,0 +1,128 @@
+" .vimrc File
+" Maintained by: Rune Pedersen
+" rune@rped.no 
+" http://rped.no
+" Dato: 8-1-12
+" *************************************
+"STANDARD OPPSETT
+" *************************************
+syntax on
+filetype on
+:filetype indent on
+filetype plugin on
+
+"Noen standard SETs
+set nocompatible
+set ruler
+set showcmd
+set hidden
+"set relativenumber
+set number
+set nocp
+
+set tabstop=3
+set shiftwidth=3
+set softtabstop=3
+set expandtab
+set pastetoggle=<F10>
+set showmatch
+set splitbelow
+set incsearch
+set hlsearch
+set encoding=utf-8
+set smartindent
+set autoindent
+
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+
+set cpoptions+=$
+
+"For autocompletion
+set wildmode=list:longest
+set wildmenu
+set foldenable
+
+"Test disse
+set laststatus=2
+set linespace=3
+"set go-=T
+
+"Want a different map leader than \
+"set mapleader = ",";
+
+" ***********************************************
+"Brukergrensesnitt
+" ***********************************************
+colorscheme elflord 
+"set guifont=Lucida_Console:h14:cDEFAULT
+set guifont=Ubuntu_Mono:h15:cDEFAULT
+
+" Set the status line the way i like it
+set stl=%f\ %m\ %r\ Line:%l/%L[%p%%]\ Col:%c\ Buf:%n\ [%b][0x%B]
+
+" ***********************************************
+" ***********************************************
+
+"nnoremaps
+nnoremap <leader>v <C-w>v<C-w>l
+
+"i Forkortelser (abbreviations)
+iabbrev frped ftp://rped.no@rped.no/
+iabbrev wrped http://rped.no/
+
+"abbrev chr :! open -a "C:\Users\Rune Pedersen\AppData\Local\Google\Chrome\Application\chrome.exe" %:p<cr>
+"abbrev fff :! open -a "C:\Program Files (x86)\Mozilla Firefox\firefox.exe" %:p<cr>
+
+"******************************
+"i Mapping
+"******************************
+"code completion to , + tab
+imap ,<tab> <C-x><C-o>
+imap jj <esc>
+
+"n Mapping 
+"nmap <space> :
+nmap ,d :cd ~\Desktop<cr>:e.<cr>
+nmap ,dd :cd ~<cr>
+nmap ,edv :tabedit $MYVIMRC<cr>
+"nmap ,srped :Nread ftp://rped.no@rped.no/<cr>:e.<cr>
+
+
+
+
+"Source the _vimrc after saving changes
+if has ("autocmd")
+	autocmd bufwritepost _vimrc source $MYVIMRC
+endif	
+
+"set up an HTML5 template for all new .html files
+autocmd BufNewFile * silent! 0r $VIMHOME\templates\%:e.tpl
+
+"Current directory to file in buffer
+autocmd BufEnter * cd %:p:h
+
+
+"*******************************************************************
+" PLUGIN SETTINGS
+"*******************************************************************
+
+"PATHOGEN   
+call pathogen#infect()
+
+
+"T-Comment Plugin
+"Rask kommentering 
+map ,c <c-_><c-_>
+
+
+"Zencoding
+"set ft=html | syn off
+let g:user_zen_expandabbr_key = '<c-e>'
+
+"NERDTree
+nmap ,nt :NERDTreeToggle<cr>
+let NERDTreeShowHidden=1
+
+
